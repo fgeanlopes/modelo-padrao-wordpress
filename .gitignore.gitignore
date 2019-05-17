@@ -1,0 +1,4 @@
+#ira ignorar os arquivos node_modules do npm
+wp-conten/themes/nome-do-tema-do-cliente/node_modules/*
+
+wp-conten/themes/nome-do-tema-do-cliente/.idea/*
