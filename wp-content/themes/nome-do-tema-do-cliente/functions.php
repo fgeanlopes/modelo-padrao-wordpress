@@ -35,7 +35,7 @@ add_filter('previous_posts_link_attributes', 'post_link_attributes');
 //OPTIONS ACF
 if( function_exists('acf_add_options_page') ) {
 
-    acf_add_options_page();
+    acf_add_options_page('Inf. Gerais ACF');
 
 }
 

@@ -1,205 +1,167 @@
-.barra_de_navegacao_fixa {
 
-  transition: all .5s;
+.navbar-master {
   position: fixed;
+  height: 80px;
+  background: transparent;
+  transition: all 1s;
   width: 100%;
-  -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+  z-index: 998;
+  transition: all .8s;
+  box-shadow: 0px 5px 13px -10px rgba(0, 0, 0, 0.75);
 
-  .logo_empresa {
-    transition: all .5s;
-    display: none;
-    @include responsivo(m_tab_g) {
-      height: 65px;
-      width: auto;
-      display: block;
-    }
-  }
+  .content-navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
 
-  &.scroll {
-    transition: all .5s;
-    background: $cor_principal;
-    .logo_empresa {
-      height: 60px;
-    }
-  }
-}
-
-.menu-mobile {
-  * {
-    transition: all .5s;
-  }
-
-  padding: 0 15px;
-  &.scroll {
-    background: $cor_principal_;
     .logo_empresa{
-      height: 65px;
-      padding-top: 5px;
+      height: 70px;
     }
-    #bt-menu-mobile {
-      width: 30px;
-    }
-  }
 
-  @include responsivo(m_tab_g) {
-    display: none;
-  }
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #fff;
-  top: 0;
-  right: 0;
+  //MENU MOBILE
+  #hamburger {
+    width: 50px;
+    height: 40px;
+    margin: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 4px;
+    right: 0;
+    z-index: 999;
 
-  .logo_empresa {
-    height: 70px;
-    left: 20px;
-    display: block;
-
-    @include responsivo(m_tab_g) {
+    @include responsivo(m_tab_p) {
       display: none;
     }
-  }
 
-  .wrapper {
-    height: 70px;
-    cursor: pointer;
-    @include flex-center;
-    @include responsivo(m_tab_g) {
-      display: none;
+    &.open {
+      span {
+        background: #000;
+
+        &:nth-child(1) {
+          top: 14px;
+          transform: rotate(135deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+          left: -30px;
+          transition: .16s ease-in-out;
+        }
+
+        &:nth-child(3) {
+          top: 14px;
+          transform: rotate(-135deg);
+        }
+      }
     }
-  }
-
-  #bt-menu-mobile {
-    cursor: pointer;
-    border: none;
-    background: none;
-    width: 40px;
-    position: relative;
-    height: 30px;
-    margin-right: 10px;
 
     span {
-      background-color: $cor_principal;
-      display: block;
-      height: 5px;
+      z-index: 999 !important;
       position: absolute;
+      height: 4px;
       width: 100%;
+      background: $cor_principal;
+      border-radius: 5px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: .25s ease-in-out;
 
-      &.top {
+      &:nth-child(1) {
         top: 0;
       }
 
-      &.middle {
-        top: 50%;
-        margin-top: -2px;
+      &:nth-child(2) {
+        top: 14px;
       }
 
-      &.bottom {
-        top: 100%;
-        margin-top: -2px;;
+      &:nth-child(3) {
+        top: 28px;
       }
     }
   }
-}
+  
+  #bg-menu-mobile {
+    overflow-x: hidden;
+    width: 190px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    background-color: #fff;
+    z-index: 99;
+    box-shadow: -9px 0px 8px 0px rgba(101, 101, 101, 0.188235);
 
-.menu-mobile #bt-menu-mobile.close-bt-hamburguer .middle {
-  opacity: 0;
-}
-
-.menu-mobile #bt-menu-mobile.close-bt-hamburguer span.top {
-  margin: -2px 0 0 -3px;
-  top: 50%;
-  width: 120%;
-  -moz-transform: rotate(-40deg);
-  -webkit-transform: rotate(-40deg);
-  -o-transform: rotate(-40deg);
-  -ms-transform: rotate(-40deg);;
-}
-
-.menu-mobile #bt-menu-mobile.close-bt-hamburguer span.bottom {
-  margin: -2px 0 0 -3px;
-  top: 50%;
-  width: 120%;
-  -moz-transform: rotate(40deg);
-  -webkit-transform: rotate(40deg);
-  -o-transform: rotate(40deg);
-  -ms-transform: rotate(40deg);;
-}
-
-.menu-mobile #bt-menu-mobile span {
-  -webkit-transition: all .2s ease-in-out;
-  -moz-transition: all .2s ease-in-out;
-  -o-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out
-}
-
-#wrapper-menu-mobile {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 100%;
-}
-
-
-
-.links-da-barra-de-navegacao {
-  width: 100%;
-  padding: 10px 0;
-
-  @include flex_center;
-  display: none;
-
-  @include responsivo(m_tab_g) {
-    display: flex !important;
-    justify-content: space-between;
-
-  }
-
-  .itens_nav {
-    @include flex_center;
-    flex-direction: column;
-
-    @include responsivo(m_tab_g) {
-      flex-direction: row;
+    @include responsivo(m_tab_p) {
+      position: initial;
+      width: initial;
+      box-shadow:none;
     }
+ 
+    //box dos itens
+    ul {
+      list-style: none;
+      width: 100%;
+      padding-top: 100px;
 
-    li {
-      padding: 5px 0;
-    }
+      @include responsivo(m_tab_p) {
+        padding-top: initial;
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100%
+      }
+      
+      li.item_nav {
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 30px;
+        left: 100%;
+        padding: 5px 0;
+        @include responsivo(m_tab_p) {
+          left: initial !important;
+          opacity: 1 !important;
+          margin: 0 10px;
+        }
 
-    .item_nav {
-      font-weight: 700;
-      margin-right: 20px;
-
-      &:hover {
         a {
-          &:before {
-            width: 100%;
-            transition: all .7s;
+          color: $cor_principal;
+          
+            &:before {
+            content: '';
+            width: 0;
+            height: 2px;
+            background-color: $cor_principal;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transition: all .5s;
+          }
+        }
+
+        &:hover {
+          color: #111;
+          transition: all .1s ease-in-out;
+          
+          a{
+            &:before {
+              width: 100%;
+              transition: all .3s ease-in-out;
+            }
           }
         }
       }
+    }
+
+    .rede-social-home {
+      @include flex-center;
+      margin-top: 50px;
 
       a {
-        color: #333;
-        text-decoration: none;
-        position: relative;
-
-        &:before {
-          content: '';
-          width: 0;
-          height: 2px;
-          background-color: $cor_principal;
-          position: absolute;
-          left: 0;
-          bottom: -4px;
-          transition: all .5s;
-        }
+        margin: 0 35px;
       }
     }
+  }
   }
 }

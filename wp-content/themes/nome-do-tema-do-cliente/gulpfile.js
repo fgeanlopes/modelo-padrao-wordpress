@@ -9,9 +9,9 @@ var reset_heroi = require('browser-sync').create();
 
 // Transforma o Sass da pasta source(desenvolvimento) em CSS levando para a pasta dist(produção)
 gulp.task('thor', function () {
-    return gulp.src('./source/sass/*.scss')
+    return gulp.src('./source/sass/**')
         .pipe(sass({outputStyle: 'compressed'}))
-        .pipe(autoprefixer({browsers:['last 4 version'], cascade:false}))
+        .pipe(autoprefixer({browsers:['last 6 version'], cascade:false}))
         .on('error', notify.onError({
             title: 'Erro no Scss, presta atenção!',
             message: '<%= error.message %>'
@@ -27,10 +27,13 @@ gulp.task('mulher-elastico', function () {
         './node_modules/jquery/dist/jquery.js',
         './node_modules/bootstrap/dist/js/bootstrap.bundle.js',
         './node_modules/bootstrap/dist/js/bootstrap.js',
-        './source/js/*.js'
+        './source/js/navbar.js',
+        './source/js/auto_margin_navbar.js',
+        './source/js/exportar_svg_wordpress.js',
+        './source/js/efeito_hover_navbar.js',
         ]
     )
-        .pipe(concat('main.js'))
+        .pipe(concat('app.js'))
         .pipe(gulp.dest('./dist/js'));
 });
 
@@ -48,24 +51,7 @@ gulp.task('reset_heroi', function () {
 
         // INFORME O LOCAL DA PASTA DO PROJETO
         proxy:   'localhost/modelo-padrao-wordpress',
-
-        // 1 - Para testar em mobile adicione o nome do
-        // projeto trabalhado no momento, ADICIONE O NOME
-        // EM "" NA TAG TUNNEL
-
-        //2 - DESCOMENTE A TAG "TUNNEL LOGO  ABAIXO"
-
-        // tunnel:  "projeto-teste-dev",
-
-        //Preferencia de abertura de link
-
-        // ABRIR NO LOCALHOST
-        // open: "local"
-
-        // ABRIR UM LINK NA REDE INTRANET DA EMPRESA,
-        // DISPONIVEL PARA APARELHOS NA REDE
-        // open: "tunnel
-        open:    "local",
+        open:    "external",
     })
 });
 
@@ -77,9 +63,9 @@ gulp.task('flash', () =>
 // Assiste as tasks
 
 gulp.task('demolidor', function () {
-    gulp.watch('./source/sass/*.scss', gulp.parallel('thor','flash'));
-    gulp.watch('./source/js/**/*.js', gulp.parallel('mulher-elastico','flash')).on('change', reset_heroi.reload);
-    gulp.watch('./source/php/*.php', gulp.parallel('stan-lee','flash')).on('change', reset_heroi.reload);
+    gulp.watch('./source/sass/**', gulp.parallel('thor','flash'));
+    gulp.watch('./source/js/**/**', gulp.parallel('mulher-elastico','flash')).on('change', reset_heroi.reload);
+    gulp.watch('./source/php/**', gulp.parallel('stan-lee','flash')).on('change', reset_heroi.reload);
 });
 
 // Chama as tasks

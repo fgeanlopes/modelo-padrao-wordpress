@@ -1,8 +1,3 @@
-<?php
-$link_facebook = "https://www.facebook.com/";
-$link_instagram = "https://www.instagram.com/?hl=pt-br";
-$link_whatsapp = "https://api.whatsapp.com/send?phone=";
-?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -36,20 +31,14 @@ $link_whatsapp = "https://api.whatsapp.com/send?phone=";
 </head>
 <body>
 <header>
-    <nav class="barra_de_navegacao_fixa">
+    <!-- <nav class="barra_de_navegacao_fixa">
         <div class="container no-gutters">
 
-            <!--Menu mobile-->
             <div class="menu-mobile">
-                <!--Icone da empresa-->
                 <a href="<?php echo home_url(); ?>/home">
                     <img class="logo_empresa mobile" src="<?= get_stylesheet_directory_uri() ?>/dist/img/logo.png"
                          alt="">
                 </a>
-                <!--Fim Icone da empresa-->
-
-
-                <!--icone do menu mobile-->
                 <div class="wrapper">
                     <button id="bt-menu-mobile">
                         <span class="top"></span>
@@ -59,10 +48,8 @@ $link_whatsapp = "https://api.whatsapp.com/send?phone=";
                     <div class="clear"></div>
                 </div>
                 <span id="wrapper-menu-mobile"></span>
-                <!--Fim icone do menu mobile-->
 
             </div>
-            <!--Fim menu mobile-->
 
 
             <div class="links-da-barra-de-navegacao">
@@ -79,5 +66,38 @@ $link_whatsapp = "https://api.whatsapp.com/send?phone=";
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
+
+    <div class="navbar-master">
+        <div class="container content-navbar">
+
+            <img class="logo_empresa" src="<?= get_stylesheet_directory_uri() ?>/dist/img/logo_empresa.png">
+
+            <div id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div id="bg-menu-mobile">
+                <ul>
+                    <li class="item_nav"><a class="link" href="#inicio">Ínicio</a></li>
+                    <li class="item_nav"><a class="link" href="#quem-sou">Quem Sou</a></li>
+                    <li class="item_nav"><a class="link" href="#graduacoes">Graduações</a></li>
+                    <li class="item_nav"><a class="link" href="#congresso-e-cursos">Congressos e Cursos</a></li>
+                    <li class="item_nav"><a class="link" href="#na-midia">Na mídia</a></li>
+                    <li class="item_nav"><a class="link" href="#contato">Contato</a></li>
+                    <div class="rede-social-home d-md-none">
+                        <a href="<?php the_field('rede-social-1') ?>">
+                            <img src="<?= get_stylesheet_directory_uri() ?>/dist/img/facebook.png">
+                        </a>
+                        <a href="<?php the_field('rede-social-2') ?>">
+                            <img src="<?= get_stylesheet_directory_uri() ?>/dist/img/instagram.png">
+                        </a>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </header>

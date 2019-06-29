@@ -21813,41 +21813,18 @@ return jQuery;
 }));
 //# sourceMappingURL=bootstrap.js.map
 
-$("#bt-menu-mobile").click(function(){
-    $(this).toggleClass("close-bt-hamburguer");
-    $(".links-da-barra-de-navegacao").slideToggle();
-});
-
-
-function barra_mobile() {
-    let heightNavMobile = $('.barra_de_navegacao_fixa').innerHeight();
-
-    $('.box_1_home').css('margin-top', heightNavMobile);
-}
-
-function barra_desktop() {
-    let heightNavDesktop = $('.barra_de_navegacao_fixa').innerHeight();
-    $('.box_1_home').css('margin-top', heightNavDesktop);
-
-}
-
+//FUNCAO PARA ADICIONAR O ESPAÇO AUTOMATICAMENTE DA BARRA DE NAVEGAÇÃO PARA EVITAR A SOBREPOSIÇÃO
 function barraNav() {
-    if(window.innerWidth >= 992){
-        barra_desktop();
-    }else{
-        barra_mobile();
-    }
+    let heightNav = $('.barra_de_navegacao_fixa').innerHeight();
+    $('.box-home-1').css('margin-top', heightNav);
 }
-
 barraNav();
 
+//REEXECUTA A FUNCAO AO REDIMENCIONAR A TELA
 window.onresize=function() {
     barraNav();
 };
-
-
-$caminho_do_logo_scroll = "<?php echo get_stylesheet_directory_uri() ?>/dist/img/logo_empresa_branco.png";
-
+//ADICIONA EFEITO AO A BARRA DE NAVEGAÇÃO AO ROLAR A TELA DO BROWSER
 $(function() {
     var lastScrollTop = 0;
     $(window).scroll(function() {
@@ -21871,3 +21848,125 @@ $(function() {
         }
     });
 });
+//FUNCAO PARA EXPORTA O ARQUIVO DE CAMINHO SVG PARA O DOCUMENTO DOOM
+// OBS: PRECISA ADICIONAR A CLASSE "svg" a classe de caminho '<img class="svg qualqer_outra_class" src="...">'
+$(function () {
+    jQuery('img.svg').each(function () {
+        var $img = jQuery(this);
+        var imgID = $img.attr('id');
+        var imgClass = $img.attr('class');
+        var imgURL = $img.attr('src');
+
+        jQuery.get(imgURL, function (data) {
+        	
+            // Get the SVG tag, ignore the rest
+            var $svg = jQuery(data).find('svg');
+
+            // Add replaced image's ID to the new SVG
+            if (typeof imgID !== 'undefined') {
+                $svg = $svg.attr('id', imgID);
+            }
+            // Add replaced image's classes to the new SVG
+            if (typeof imgClass !== 'undefined') {
+                $svg = $svg.attr('class', imgClass + ' replaced-svg');
+            }
+
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a');
+
+            // Check if the viewport is set, else we gonna set it if we can.
+            if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+                $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+            }
+
+            // Replace image with new SVG
+            $img.replaceWith($svg);
+
+        }, 'xml');
+
+    });
+});
+
+//MENU RESPONSIVO
+var state = 0;
+
+    $('#hamburger').click(function () {
+        // Remove ou adiciona class
+        $(this).toggleClass('open');
+
+        var delayTime = 0;
+
+        // se não valor for === 0  (inicial)
+        if (state === 0) {
+            $('#bg-menu-mobile').animate({
+                    top: 0,
+                    right: 0,
+                    duration: 520,
+                    easing: 'easeInOutStrong'
+                }
+            );
+            $('.item_nav').each(function () {
+                $(this).delay(delayTime).animate(
+                    {
+                        left: '20px',
+                        opacity: 1
+                    },
+                    {
+                        duration: 720,
+                        easing: 'easeInOutStrong'
+                    }
+                );
+                delayTime += 25;
+            });
+            state = 1;
+
+        }
+
+        // se já estiver ativo
+        else {
+            $('#bg-menu-mobile').delay(300).animate(
+                {
+                    top: 0,
+                    right: '-100%'
+                },
+                {
+                    duration: 650,
+                    easing: 'easeInOutStrong'
+                }
+            );
+            $('.item_nav').each(function () {
+
+                $(this).delay(delayTime).animate(
+
+                    {
+                        left: '100%',
+                        opacity: 0
+                    },
+                    {
+                        duration: 720,
+                        easing: 'easeInOutStrong'
+                    }
+                );
+                delayTime += 20;
+
+            });
+            state = 0;
+        }
+    });
+
+    // se clicar em algum li da barra nav
+    $('.item_nav').click(function () {
+        $('#hamburger').removeClass('open');
+
+        $('#bg-menu-mobile').delay(300).animate(
+            {
+                top: 0,
+                right: '-100%'
+            },
+            {
+                duration: 650,
+                easing: 'easeInOutStrong'
+            }
+        );
+        state = 0;
+    });
