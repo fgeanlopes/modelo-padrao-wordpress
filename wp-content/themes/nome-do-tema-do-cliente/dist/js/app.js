@@ -21813,79 +21813,6 @@ return jQuery;
 }));
 //# sourceMappingURL=bootstrap.js.map
 
-//FUNCAO PARA ADICIONAR O ESPAÇO AUTOMATICAMENTE DA BARRA DE NAVEGAÇÃO PARA EVITAR A SOBREPOSIÇÃO
-function barraNav() {
-    let heightNav = $('.barra_de_navegacao_fixa').innerHeight();
-    $('.box-home-1').css('margin-top', heightNav);
-}
-barraNav();
-
-//REEXECUTA A FUNCAO AO REDIMENCIONAR A TELA
-window.onresize=function() {
-    barraNav();
-};
-//FUNCAO PARA EXPORTA O ARQUIVO DE CAMINHO SVG PARA O DOCUMENTO DOOM
-// OBS: PRECISA ADICIONAR A CLASSE "svg" a classe de caminho '<img class="svg qualqer_outra_class" src="...">'
-$(function () {
-    jQuery('img.svg').each(function () {
-        var $img = jQuery(this);
-        var imgID = $img.attr('id');
-        var imgClass = $img.attr('class');
-        var imgURL = $img.attr('src');
-
-        jQuery.get(imgURL, function (data) {
-        	
-            // Get the SVG tag, ignore the rest
-            var $svg = jQuery(data).find('svg');
-
-            // Add replaced image's ID to the new SVG
-            if (typeof imgID !== 'undefined') {
-                $svg = $svg.attr('id', imgID);
-            }
-            // Add replaced image's classes to the new SVG
-            if (typeof imgClass !== 'undefined') {
-                $svg = $svg.attr('class', imgClass + ' replaced-svg');
-            }
-
-            // Remove any invalid XML tags as per http://validator.w3.org
-            $svg = $svg.removeAttr('xmlns:a');
-
-            // Check if the viewport is set, else we gonna set it if we can.
-            if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-                $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
-            }
-
-            // Replace image with new SVG
-            $img.replaceWith($svg);
-
-        }, 'xml');
-
-    });
-});
-//ADICIONA EFEITO AO A BARRA DE NAVEGAÇÃO AO ROLAR A TELA DO BROWSER
-$(function() {
-    var lastScrollTop = 0;
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > 50) {
-
-            var st = $(this).scrollTop();
-
-            if (lastScrollTop - st < 0) {
-                $(".barra_de_navegacao_fixa").addClass("scroll");
-                $(".menu-mobile").addClass("scroll");
-
-
-            } else {
-                $(".barra_de_navegacao_fixa").removeClass("scroll");
-                $(".menu-mobile").removeClass("scroll");
-            }
-            lastScrollTop = st;
-        } else {
-            $(".barra_de_navegacao_fixa").removeClass("scroll");
-            $(".menu-mobile").removeClass("scroll");
-        }
-    });
-});
 /*!
  * VERSION: 0.1.12
  * DATE: 2015-08-11
@@ -21986,3 +21913,76 @@ var state = 0;
         );
         state = 0;
     });
+//FUNCAO PARA ADICIONAR O ESPAÇO AUTOMATICAMENTE DA BARRA DE NAVEGAÇÃO PARA EVITAR A SOBREPOSIÇÃO
+function barraNav() {
+    let heightNav = $('.barra_de_navegacao_fixa').innerHeight();
+    $('.box-home-1').css('margin-top', heightNav);
+}
+barraNav();
+
+//REEXECUTA A FUNCAO AO REDIMENCIONAR A TELA
+window.onresize=function() {
+    barraNav();
+};
+//FUNCAO PARA EXPORTA O ARQUIVO DE CAMINHO SVG PARA O DOCUMENTO DOOM
+// OBS: PRECISA ADICIONAR A CLASSE "svg" a classe de caminho '<img class="svg qualqer_outra_class" src="...">'
+$(function () {
+    jQuery('img.svg').each(function () {
+        var $img = jQuery(this);
+        var imgID = $img.attr('id');
+        var imgClass = $img.attr('class');
+        var imgURL = $img.attr('src');
+
+        jQuery.get(imgURL, function (data) {
+        	
+            // Get the SVG tag, ignore the rest
+            var $svg = jQuery(data).find('svg');
+
+            // Add replaced image's ID to the new SVG
+            if (typeof imgID !== 'undefined') {
+                $svg = $svg.attr('id', imgID);
+            }
+            // Add replaced image's classes to the new SVG
+            if (typeof imgClass !== 'undefined') {
+                $svg = $svg.attr('class', imgClass + ' replaced-svg');
+            }
+
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a');
+
+            // Check if the viewport is set, else we gonna set it if we can.
+            if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+                $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+            }
+
+            // Replace image with new SVG
+            $img.replaceWith($svg);
+
+        }, 'xml');
+
+    });
+});
+//ADICIONA EFEITO AO A BARRA DE NAVEGAÇÃO AO ROLAR A TELA DO BROWSER
+$(function() {
+    var lastScrollTop = 0;
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 50) {
+
+            var st = $(this).scrollTop();
+
+            if (lastScrollTop - st < 0) {
+                $(".barra_de_navegacao_fixa").addClass("scroll");
+                $(".menu-mobile").addClass("scroll");
+
+
+            } else {
+                $(".barra_de_navegacao_fixa").removeClass("scroll");
+                $(".menu-mobile").removeClass("scroll");
+            }
+            lastScrollTop = st;
+        } else {
+            $(".barra_de_navegacao_fixa").removeClass("scroll");
+            $(".menu-mobile").removeClass("scroll");
+        }
+    });
+});
