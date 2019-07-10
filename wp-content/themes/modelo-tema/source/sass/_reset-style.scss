@@ -1,0 +1,33 @@
+html,body{
+  overflow-x: hidden;
+}
+
+body, p, h1, h2, h3, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+a,a:hover{
+  text-decoration: none;
+}
+p,span,a{
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+p:focus, button:focus, span:focus, input:focus {
+  border-color: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
+
