@@ -148,3 +148,14 @@ p {
     box-shadow: none;
   }
 }
+
+//Contact Form 7
+.screen-reader-response{
+  ul{
+      max-height: 24px;
+      overflow: hidden;
+  }
+}
+.wpcf7-validation-errors,.wpcf7-file,.wpcf7-mail-sent-ng{
+  display: none;
+}
