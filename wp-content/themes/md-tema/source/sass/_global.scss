@@ -1,0 +1,135 @@
+// ALT NAS IMAGENS
+img[alt=""],
+img:not([alt]) {
+  //border: 5px dashed red;
+}
+
+//CORES
+$cor_principal: black;
+$cor_principal_: red;
+
+//Tamanho pre definido dos Media Queries
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$lg_: 1024px;
+$xl: 1140px;
+$xl_: 1280px;
+$xg: 1400px;
+$mc: 1920px;
+$mc_: 2560px;
+
+
+//Media Queries
+@mixin responsivo($size) {
+
+  @if $size==sm {
+    @media screen and(min-width: #{$sm}) {
+      @content
+    }
+  } @else if $size==md {
+    @media screen and(min-width: #{$md}) {
+      @content
+    }
+  } @else if $size==lg {
+    @media screen and(min-width: #{$lg}) {
+      @content
+    }
+  } @else if $size==lg_ {
+    @media screen and(min-width: #{$lg_}) {
+      @content
+    }
+  } @else if $size==xl {
+    @media screen and(min-width: #{$xl}) {
+      @content
+    }
+  } @else if $size==xl_ {
+    @media screen and(min-width: #{$xl_}) {
+      @content
+    }
+  } @else if $size==xg {
+    @media screen and(min-width: #{$xg}) {
+      @content
+    }
+  } @else if $size==mc {
+    @media screen and(min-width: #{$mc}) {
+      @content
+    }
+  } @else if $size==mc_ {
+    @media screen and(min-width: #{$mc_}) {
+      @content
+    }
+  }
+}
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//Fontes do site
+@font-face {
+  font-family: font-exem_1;
+  src: url(../font/font-exem_1.woff);
+}
+@mixin fonte_1 {
+  font-family: font-exem_1;
+}
+
+
+.titulo{
+  @include fonte_1;
+}
+
+
+//Remover Padding dos col do boostrap
+.no-gutters {
+  padding: 0;
+}
+
+//Container
+.container {
+  max-width: 95%;
+  margin: 0 auto;
+
+  @include responsivo(md) {
+    max-width: 800px;
+  }
+
+  @include responsivo(lg) {
+    max-width: 998px;
+  }
+
+  @include responsivo(xl) {
+    max-width: 1000px;
+  }
+
+  @include responsivo(xl_) {
+    max-width: 1200px;
+  }
+
+}
+
+.owl-theme{
+  position: relative;
+}
+
+//Forma Bootstrap
+.form-control {
+  &:focus {
+    border-color: $cor_principal_;
+    box-shadow: none;
+  }
+}
+
+//Contact Form 7
+.screen-reader-response {
+  ul {
+    max-height: 24px;
+    overflow: hidden;
+  }
+}
+
+.wpcf7-validation-errors, .wpcf7-file, .wpcf7-mail-sent-ng {
+  display: none;
+}

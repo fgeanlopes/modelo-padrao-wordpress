@@ -2,11 +2,11 @@
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /modelo-padrao-wordpress/
+RewriteBase /md-padrao-w/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /modelo-padrao-wordpress/index.php [L]
+RewriteRule . /md-padrao-w/index.php [L]
 </IfModule>
 
 # END WordPress

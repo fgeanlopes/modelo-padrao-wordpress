@@ -1,0 +1,27 @@
+.post {
+  .box-1 {
+    .titulo-post {
+      padding: 30px 0;
+    }
+
+    .posts-relacionados {
+      .titulo-posts-relacionados {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .box-2 {
+    .categoria-do-post {
+      padding-top: 15px;
+      @include responsivo(lg) {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+    .conteudo-post {
+      padding: 30px 0;
+    }
+  }
+}
