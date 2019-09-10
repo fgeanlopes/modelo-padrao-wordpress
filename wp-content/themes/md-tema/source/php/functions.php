@@ -19,9 +19,22 @@ add_theme_support('post-thumbnails', array(
 ));
 
 //DEFININDO TAMANHO DO RESUMO POST
-add_filter('excerpt_length', function ($length) {
+/*add_filter('excerpt_length', function ($length) {
     return 45;
 });
+*/
+
+function excerpt($limit) {
+    $excerpt = explode(' ', get_the_excerpt(), $limit);
+    if (count($excerpt)>=$limit) {
+        array_pop($excerpt);
+        $excerpt = implode(" ",$excerpt).'...';
+    } else {
+        $excerpt = implode(" ",$excerpt);
+    }
+    $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
+    return $excerpt;
+}
 
 //OPTIONS ACF
 if (function_exists('acf_add_options_page')) {
