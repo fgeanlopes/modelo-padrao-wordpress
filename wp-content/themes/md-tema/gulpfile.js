@@ -54,7 +54,7 @@ gulp.task('reset_heroi', function () {
     reset_heroi.init({
 
         // INFORME O LOCAL DA PASTA DO PROJETO
-        proxy:   'localhost/md-padrao-w',
+        proxy:   'localhost/md-padrao',
         open:    "external",
     })
 });

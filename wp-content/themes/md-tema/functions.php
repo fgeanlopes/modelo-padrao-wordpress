@@ -5,7 +5,7 @@ function remove_menus(){
     remove_menu_page('index.php'); //Painel de controle
 //	remove_menu_page ('edit.php'); //Postagens
     remove_menu_page('edit-comments.php'); //Comentários
-    remove_menu_page('themes.php'); //Aparência
+//    remove_menu_page('themes.php'); //Aparência
     remove_menu_page('tools.php'); //Ferramentas
 }
 
@@ -18,10 +18,17 @@ add_theme_support('post-thumbnails', array(
     'ex_1',
 ));
 
-//DEFININDO TAMANHO DO RESUMO POST
-add_filter('excerpt_length', function ($length) {
-    return 45;
-});
+function excerpt($limit) {
+    $excerpt = explode(' ', get_the_excerpt(), $limit);
+    if (count($excerpt)>=$limit) {
+        array_pop($excerpt);
+        $excerpt = implode(" ",$excerpt).'...';
+    } else {
+        $excerpt = implode(" ",$excerpt);
+    }
+    $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
+    return $excerpt;
+}
 
 //OPTIONS ACF
 if (function_exists('acf_add_options_page')) {
@@ -29,8 +36,7 @@ if (function_exists('acf_add_options_page')) {
 }
 
 //CUSTON POST
-function ct_ex_1()
-{
+function ct_ex_1(){
     register_post_type('ex_1', [
             'labels' => [
                 'name' => "ex_1",
@@ -48,9 +54,7 @@ function ct_ex_1()
 add_action('init', 'ct_ex_1');
 
 
-//Caterory personalizada -> Taxonomy
-function cat_ex_1()
-{
+function cat_ex_1(){
     $labels = array(
         'name' => _x('cat_ex_1', 'Taxonomy General Name', 'text_domain'),
         'singular_name' => _x('cat_ex_1', 'Taxonomy Singular Name', 'text_domain'),

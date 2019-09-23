@@ -5,10 +5,23 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!--META TAG SEO-->
     <meta name="robots" content="index, follow"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= get_stylesheet_directory_uri() ?>/dist/img/favicon.png">
+
+
     <meta name="description" content="<?php bloginfo('description'); ?>">
+
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="<?php the_title(); ?>">
+    <meta property="og:description" content="<?php the_field('descricao-box-2-1', $post->ID); ?>">
+
+    <meta property="og:site_name" content="<?php bloginfo('description'); ?>">
+
+    <meta property="og:image" content="<?= get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>">
+    <meta property="og:image:secure_url" content="<?= get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <title>
         <?php
