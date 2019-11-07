@@ -15,7 +15,22 @@ gulp.task('thor', function () {
         ]
     )
         .pipe(sass({outputStyle: 'compressed'}))
-        .pipe(autoprefixer({browsers:['last 6 version'], cascade:false}))
+        .pipe(autoprefixer({
+            "overrideBrowserslist": [
+                "> 1%",
+                "ie >= 8",
+                "edge >= 15",
+                "ie_mob >= 10",
+                "ff >= 45",
+                "chrome >= 45",
+                "safari >= 7",
+                "opera >= 23",
+                "ios >= 7",
+                "android >= 4",
+                "bb >= 10"
+              ], cascade:false
+        
+        }))
         .pipe(concat('style.css'))
         .pipe(gulp.dest('./dist/css'))
         .pipe(reset_heroi.stream());
@@ -54,7 +69,7 @@ gulp.task('reset_heroi', function () {
     reset_heroi.init({
 
         // INFORME O LOCAL DA PASTA DO PROJETO
-        proxy:   'localhost/md-padrao',
+        proxy:   'localhost/sites-teste',
         open:    "external",
     })
 });
@@ -69,7 +84,7 @@ gulp.task('flash', () =>
 gulp.task('demolidor', function () {
     gulp.watch('./source/sass/**', gulp.parallel('thor','flash'));
     gulp.watch('./source/js/**/**', gulp.parallel('mulher-elastico','flash')).on('change', reset_heroi.reload);
-    gulp.watch('./source/php/**', gulp.parallel('stan-lee','flash')).on('change', reset_heroi.reload);
+   gulp.watch('./source/php/**', gulp.parallel('stan-lee','flash')).on('change', reset_heroi.reload);
 });
 
 // Chama as tasks
